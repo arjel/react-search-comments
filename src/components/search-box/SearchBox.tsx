@@ -17,21 +17,25 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onTextChange, onFormSubmit
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if(inputValue.length < 4){
+      alert("Please, typing min 4 char")
+      return
+    }
     onFormSubmit();
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form onSubmit={onSubmitHandler} className={styles.searchBox}>
       <input
         type="text"
         name="textToSearch"
         alt="Search input"
-        placeholder="Types here..."
-        className={styles.SearchInput}
+        placeholder="Search comments..."
+        className={`${styles.searchInput} ${styles.resetBorder}`}
         value={inputValue}
         onChange={onChangeHandler}
       />
-      <button type="submit">
+      <button className={`${styles.buttonSubmit} ${styles.resetBorder}`} type="submit">
         Search
       </button>
     </form>

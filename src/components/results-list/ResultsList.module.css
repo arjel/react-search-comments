@@ -1,4 +1,12 @@
-.SearchResultList {
-  height: 200px;
-  background-color: white;
+.resultList {
+  width: 100%;
+  max-width: 450px;
 }
+
+.noResults{
+  font-size: 2em;
+  margin-top: 60px;
+  text-align: center;
+  color: #fff;
+}
+

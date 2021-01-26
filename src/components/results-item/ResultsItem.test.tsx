@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Suggestions } from './Suggestions';
+import { ResultsItem } from './ResultsItem';
 
 test('render Search Input', () => {
 

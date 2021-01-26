@@ -15,16 +15,20 @@ export const useSearch = () => {
 
   const [hideResultList, setHideResultList] = useState<boolean>(true);
 
+  const [textInput, setTextInput] = useState<string>('');
+
   const onTextChangeHandler = (text: string) => {
+    setResults([]);
+    setHideResultList(true);
     const textWithoutSpace = text.replace(/ /g, "");
     if (textWithoutSpace.length < MIN_CHAR_TO_PERFORM_REQUEST) {
       setSuggestions([]);
       return;
     }
+    setTextInput(text);
     fetchCommentsData(text);
   };
 
-  // todo use unique data
   const onFormSubmitHandler = () => {
     setResults([...commentsData.slice(0,MAX_COMMENTS_TO_BE_SHOWN)])
     setHideResultList(false);
@@ -48,6 +52,7 @@ export const useSearch = () => {
     suggestions,
     hideResultList,
     hideSuggestions,
+    textInput,
     onTextChangeHandler,
     onFormSubmitHandler,
   };

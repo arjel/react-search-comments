@@ -1,4 +1,16 @@
-.Suggestions {
-  height: 200px;
-  background-color: red;
+.suggestions {
+  background:rgba(20,136,204, 0.1);
+  width: 100%;
+  max-width: 450px;
+  color: #fff;
+}
+.suggestions span{
+  font-size: 0.75em;
+  display: inline-block;
+  margin-top: 10px;
+}
+.suggestions p{
+  font-size: 1em;
+  display: inline-block;
+  margin: 8px;
 }

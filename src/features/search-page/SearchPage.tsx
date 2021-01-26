@@ -6,7 +6,7 @@ import styles from './SearchPage.module.css';
 import { Suggestions } from '../../components/suggestions/Suggestions';
 
 export const SearchPage: React.FC = () => {
-  const { results, hideResultList, suggestions, hideSuggestions, onTextChangeHandler, onFormSubmitHandler } = useSearch();
+  const { results, hideResultList, suggestions, hideSuggestions, textInput, onTextChangeHandler, onFormSubmitHandler } = useSearch();
 
   return (
     <div className={styles.SearchPage}>
@@ -16,6 +16,7 @@ export const SearchPage: React.FC = () => {
       />
       <Suggestions
         hidden={hideSuggestions}
+        textInput={textInput}
         suggestions={suggestions}
       />
       <ResultsList
