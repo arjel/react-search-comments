@@ -9,20 +9,20 @@ export const SearchPage: React.FC = () => {
   const { results, hideResultList, suggestions, hideSuggestions, textInput, onTextChangeHandler, onFormSubmitHandler } = useSearch();
 
   return (
-    <div className={styles.SearchPage}>
-      <SearchBox
-        onTextChange={onTextChangeHandler}
-        onFormSubmit={onFormSubmitHandler}
-      />
-      <Suggestions
-        hidden={hideSuggestions}
-        textInput={textInput}
-        suggestions={suggestions}
-      />
-      <ResultsList
-        hidden={hideResultList}
-        comments={results}
-      />
-    </div>
+      <div className={styles.SearchPage}>
+        <SearchBox
+          onTextChange={onTextChangeHandler}
+          onFormSubmit={onFormSubmitHandler}
+        />
+        <Suggestions
+          hidden={hideSuggestions}
+          textInput={textInput}
+          suggestions={suggestions}
+        />
+        <ResultsList
+          hidden={hideResultList}
+          comments={results}
+        />
+      </div>
   );
 };
