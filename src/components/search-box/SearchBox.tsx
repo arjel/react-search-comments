@@ -20,7 +20,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onTextChange, onFormSubmit
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if(inputValue.length < MIN_CHAR_TO_PERFORM_REQUEST){
-      alert("Please, typing min 4 char")
+      alert("Please, type at least 4 chars")
       return
     }
     onFormSubmit();
