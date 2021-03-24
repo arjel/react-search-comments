@@ -1,6 +1,6 @@
-import { Comment } from './../model/Comment';
-import { useEffect, useState } from 'react';
-import { Api } from '../api/Api';
+import { Comment } from "./../model/Comment";
+import { useEffect, useState } from "react";
+import { Api } from "../api/Api";
 
 export const useSearch = () => {
   const MIN_CHAR_TO_PERFORM_REQUEST = 4;
@@ -15,9 +15,21 @@ export const useSearch = () => {
 
   const [hideResultList, setHideResultList] = useState<boolean>(true);
 
-  const [textInput, setTextInput] = useState<string>('');
+  const [textInput, setTextInput] = useState<string>("");
+
+  let timeout: NodeJS.Timeout;
 
   const onTextChangeHandler = (text: string) => {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      clearTimeout(timeout);
+      onTimeout(text);
+    }, 300);
+  };
+
+  const onTimeout = (text: string) => {
     setResults([]);
     setHideResultList(true);
     const textWithoutSpace = text.replace(/ /g, "");
@@ -30,22 +42,20 @@ export const useSearch = () => {
   };
 
   const onFormSubmitHandler = () => {
-    setResults([...commentsData.slice(0,MAX_COMMENTS_TO_BE_SHOWN)])
+    setResults([...commentsData.slice(0, MAX_COMMENTS_TO_BE_SHOWN)]);
     setHideResultList(false);
     setHideSuggestions(true);
   };
 
-  const fetchCommentsData = async (text:string) => {
+  const fetchCommentsData = async (text: string) => {
     const comments = await Api.getComments(text);
     setCommentsData(comments);
-  }
+  };
 
   useEffect(() => {
-    setSuggestions([...commentsData.slice(0,MAX_SUGGESTIONS_TO_BE_SHOWN)]);
+    setSuggestions([...commentsData.slice(0, MAX_SUGGESTIONS_TO_BE_SHOWN)]);
     setHideSuggestions(false);
   }, [commentsData]);
-
-
 
   return {
     results,
@@ -54,6 +64,6 @@ export const useSearch = () => {
     hideSuggestions,
     textInput,
     onTextChangeHandler,
-    onFormSubmitHandler,
+    onFormSubmitHandler
   };
 };
